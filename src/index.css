@@ -5,6 +5,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+a {
+  text-decoration: none;
+  color: white;
+}
 html {
   background-color: #dce4fb;
   font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont,
@@ -18,11 +22,40 @@ html {
 .option:hover {
   box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.04);
 }
+.view {
+  padding: 2em;
+}
+
+.deptwise-view {
+  color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1em;
+}
+.dept span {
+  font-weight: bold;
+  font-size: 3rem;
+}
+.dept {
+  cursor: pointer;
+  padding: 1em 1.5em;
+  border-radius: 8px;
+  background-color: #0073e9;
+  transition: scale 200ms ease-in;
+}
+.dept:hover {
+  scale: 1.02;
+  background-color: #1584f4;
+}
+.view * {
+  cursor: default;
+}
 .option {
   transition: all 200ms ease-in;
-
   cursor: pointer;
   margin: 1em 0;
+  display: flex;
+  align-items: center;
   text-align: left;
   background-color: white;
   border-radius: 10px;
@@ -37,7 +70,10 @@ html {
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 2em;
+  row-gap: 3em;
+}
+.progress-bar > div.finished {
+  background-color: #0073e9;
 }
 .what-ques {
   color: #0073e9;
@@ -46,14 +82,70 @@ html {
   display: flex;
   margin-bottom: 0.5em;
 }
+.header {
+  margin: 0.5em 0 1.5em 0;
+}
 .progress-bar > div {
   flex: 1;
-  background-color: blue;
+  background-color: #cdcdcdd4;
   margin: 0 0.1em;
   border-radius: 10px;
   height: 5px;
 }
+.question {
+  opacity: 0;
+  animation: quesSlide 300ms ease forwards 100ms;
+  position: relative;
+}
+.question.changed {
+  position: relative;
+  animation: quesSlideStart 300ms ease forwards !important;
+}
+@keyframes quesSlide {
+  from {
+    opacity: 0;
+    top: 20px;
+  }
+  to {
+    opacity: 1;
+    top: 0;
+  }
+}
+@keyframes quesSlideStart {
+  from {
+    opacity: 1;
+    bottom: 0;
+  }
+  to {
+    opacity: 0;
+    bottom: 20px;
+  }
+}
+.option.selected {
+  outline: 3px solid #0073e9;
+  box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.04);
+}
+.main-content {
+  animation: slide 300ms ease forwards;
+  position: relative;
+}
+@keyframes slide {
+  from {
+    opacity: 0;
+    top: 50px;
+  }
+  to {
+    opacity: 1;
+    top: 0;
+  }
+}
+.option img {
+  opacity: 0;
+  scale: 0;
+  transition: all 200ms ease-in-out;
+}
 .btn {
+  transition: all 300ms ease-out;
   background-color: #0073e9;
   display: flex;
   justify-content: center;
@@ -65,6 +157,14 @@ html {
   border-radius: 6px;
   color: white;
 }
+img.selected {
+  opacity: 1;
+  scale: 1;
+}
 .btn > img {
   width: 25px;
+}
+.btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }

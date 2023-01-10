@@ -1,18 +1,12 @@
-import React,{useContext} from 'react'
-import backIcon from "../assets/back.svg"
+import React, { useContext } from 'react'
 import { AppContext } from '../App'
 function Header() {
-    const { questions } = useContext(AppContext)
+    const { questions, selectedIndex } = useContext(AppContext)
     return (
         <header className='header'>
-            <h1>Header</h1>
             <div className="progress-bar">
-                {[1, 2, 3, 4, 5, 6, 7, 8].map(e => <div />)}
+                {questions.map((_, i) => <div key={_.id} className={selectedIndex >= i ? "finished" : ''} />)}
             </div>
-            <button className='btn'>
-                <img src={backIcon} alt="back" />
-                Previous
-            </button>
         </header>
     )
 }
