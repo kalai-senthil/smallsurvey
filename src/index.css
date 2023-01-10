@@ -1,0 +1,70 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  background-color: #dce4fb;
+  font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
+}
+.options {
+  display: flex;
+  flex-direction: column;
+}
+.option:hover {
+  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.04);
+}
+.option {
+  transition: all 200ms ease-in;
+
+  cursor: pointer;
+  margin: 1em 0;
+  text-align: left;
+  background-color: white;
+  border-radius: 10px;
+  padding: 1em 1.5em;
+}
+.app {
+  padding: 1em 2em;
+}
+.main-content {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+.what-ques {
+  color: #0073e9;
+}
+.progress-bar {
+  display: flex;
+  margin-bottom: 0.5em;
+}
+.progress-bar > div {
+  flex: 1;
+  background-color: blue;
+  margin: 0 0.1em;
+  border-radius: 10px;
+  height: 5px;
+}
+.btn {
+  background-color: #0073e9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  gap: 0 0.2em;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  border-radius: 6px;
+  color: white;
+}
+.btn > img {
+  width: 25px;
+}
