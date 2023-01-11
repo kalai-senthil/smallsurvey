@@ -106,48 +106,56 @@ function Home() {
   const { loading, getDetails, gotDetails, navigateToPrevQuestion, navigateToNextQuestion, depts, selectedIndex } = useContext(AppContext);
 
   return !gotDetails ?
-    <div>
-      <div>
-        <h1>FEEDBACK FORM</h1>
-        <p>Enter the details to jump into the survey</p>
-      </div >
-      <div>
-        <label>Name :</label>
-        <input onChange={(v) => {
-          getDetails('name', v.target.value.toUpperCase());
-        }} type="text" required />
-      </div><div>
-        <label>Register No:</label>
-        <input
-          onChange={(v) => {
-            getDetails('regno', v.target.value.toUpperCase());
-          }}
-          type="text" required />
+    <div className='login-form'>
+      <div className='align-center'>
+          <h1>FEEDBACK FORM</h1>
+          <p className='text-regular'>Enter the details to jump into the survey</p>
+        </div >
+      <div className='login-form-content'>
+        <div className='flex-'>
+          <label className='label'>Name</label>
+          <input className='input' onChange={(v) => {
+            getDetails('name', v.target.value.toUpperCase());
+          }} type="text" required />
+        </div>
+        <div className='flex-'>
+          <label className='label'>Register No</label>
+          <input
+          className='input'
+            onChange={(v) => {
+              getDetails('regno', v.target.value.toUpperCase());
+            }}
+            type="text" required />
+        </div>
+        <div className='flex'>
+          <div>
+          <label className='label'>Department</label>
+          <select
+            onChange={(v) => {
+              getDetails('department', v.target.value);
+            }}
+          >
+            <option value="">Select Department</option>
+            {depts.map(dept => <option key={dept.id} value={dept.abbr}>{dept.name}</option>)}
+          </select>
+          </div>
+          <div>
+          <label className='label'>Year</label>
+          <select
+            onChange={(v) => {
+              getDetails('year', v.target.value);
+            }}
+          >
+            <option>Select Year</option>
+            <option >I</option>
+            <option >II</option>
+            <option >III</option>
+            <option >IV</option>
+          </select>
+          </div>
+        </div>
+        <button onClick={navigateToNextQuestion} className='btn'>Next</button>
       </div>
-      <label>Department</label>
-      <select
-        onChange={(v) => {
-          getDetails('department', v.target.value);
-        }}
-      >
-        <option value="">Select Department</option>
-        {depts.map(dept => <option key={dept.id} value={dept.abbr}>{dept.name}</option>)}
-
-      </select>
-      <div></div>
-      <label>Year</label>
-      <select
-        onChange={(v) => {
-          getDetails('year', v.target.value);
-        }}
-      >
-        <option>Select Year</option>
-        <option >I</option>
-        <option >II</option>
-        <option >III</option>
-        <option >IV</option>
-      </select>
-      <button onClick={navigateToNextQuestion} className='btn'>Next</button>
     </div>
     :
     (
