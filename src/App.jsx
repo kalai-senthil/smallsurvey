@@ -5,10 +5,11 @@ import backIcon from "./assets/back.svg"
 import Header from './components/Header';
 import { createContext, } from 'react';
 import Main from './components/Main';
-import { addDoc, collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore"
+import { addDoc, collection, doc, getDoc, getDocs, orderBy, query, setDoc } from "firebase/firestore"
 import db from './firebase';
 import ViewResult from './components/ViewResult';
 import Admin from './components/Admin';
+import Create from './components/Create';
 
 export const AppContext = createContext();
 function App() {
@@ -19,7 +20,7 @@ function App() {
   const [depts, setDepts] = useState([])
   const [selectedIndex, setSelectedIndex] = useState(0)
   async function getQuestions() {
-    const d = await getDocs(collection(db, "questions"));
+    const d = await getDocs(query(collection(db, "questions"), orderBy("order")));
     const tempQues = [];
     d.docs.forEach(doc => {
       tempQues.push({ ...doc.data(), "id": doc.id });
@@ -93,6 +94,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route element={<ViewResult />} path='/view' />
           <Route element={<Admin />} path='/admin' />
+          <Route element={<Create />} path='/create' />
         </Routes>
       </BrowserRouter>
     </AppContext.Provider>
@@ -103,7 +105,7 @@ function App() {
 
 
 function Home() {
-  const { loading, getDetails, gotDetails, navigateToPrevQuestion, navigateToNextQuestion, depts, selectedIndex } = useContext(AppContext);
+  const { loading, getDetails, gotDetails, navigateToPrevQuestion, navigateToNextQuestion, depts, selectedIndex, questions } = useContext(AppContext);
 
   return !gotDetails ?
     <div className='login-form'>
@@ -161,7 +163,7 @@ function Home() {
     (
       loading ? "Loading..." :
         <div className='app'>
-          <Header />
+          <Header questions={questions} selectedIndex={selectedIndex} />
           <button disabled={selectedIndex === 0} onClick={navigateToPrevQuestion} className='btn'>
             <img src={backIcon} alt="back" />
             Previous
