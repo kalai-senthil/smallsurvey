@@ -11,6 +11,7 @@ function Main() {
             <div className='main-content'>
                 <p className="what-ques">QUESTION {selectedIndex + 1} / {questions.length}</p>
                 <h2 className='question' ref={ele}>{questions[selectedIndex]['question']}</h2>
+                <h4 className='what-ques'>{questions[selectedIndex]['category']}</h4>
                 <div className="options">
                     {questions[selectedIndex]['options'].map(option => {
                         let answerSelected = questions[selectedIndex]['answer'] === option;

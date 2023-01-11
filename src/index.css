@@ -11,7 +11,7 @@ a {
 }
 html {
   background-color: #dce4fb;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 .options {
   display: flex;
@@ -22,6 +22,24 @@ html {
 }
 .view {
   padding: 2em;
+}
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+}
+.categories > span {
+  cursor: pointer;
+  outline: 3px solid #0073e9;
+  background-color: white;
+  border-radius: 7px;
+  padding: 0.5em 0.3em;
+  margin: 0.2em;
+}
+.dept-diagrams > div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 .view.admin {
   display: grid;
@@ -38,24 +56,32 @@ html {
 
 .deptwise-view {
   color: white;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 90vh;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(1, 1fr);
   gap: 1em;
 }
 .dept span {
   font-weight: bold;
-  font-size: 3rem;
+  font-size: 1.2rem;
+}
+.dept > p {
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 .dept {
   cursor: pointer;
   padding: 1em 1.5em;
   border-radius: 8px;
-  background-color: #0073e9;
+  /* background-color: #0075e9; */
+  color: black;
   transition: scale 200ms ease-in;
 }
 .dept:hover {
   scale: 1.02;
-  background-color: #1584f4;
+  /* background-color: #1584f4; */
 }
 .view * {
   cursor: default;
@@ -74,64 +100,75 @@ html {
 .app {
   padding: 1em 2em;
 }
-.login-form{
+.login-form {
   max-width: 600px;
   margin: 0;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background:fff;
+  background: fff;
 }
-.login-form-content{
+.login-form-content {
   display: flex;
   flex-direction: column;
-  gap:1rem;
+  gap: 1rem;
   background-color: #fff;
   border-radius: 0.7rem;
-  padding: 2rem;  
-  margin-top:1rem;
+  padding: 2rem;
+  margin-top: 1rem;
+}
+.categories > .selected {
+  background-color: #0073e9;
+  color: white;
+}
+.dept-diagrams {
+  display: flex;
 }
 .input {
   height: 44px;
   background-color: #05060f0a;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   padding: 0 1rem;
   border: 2px solid transparent;
   font-size: 1rem;
-  transition: border-color .3s cubic-bezier(.25,.01,.25,1) 0s, color .3s cubic-bezier(.25,.01,.25,1) 0s,background .2s cubic-bezier(.25,.01,.25,1) 0s;
+  transition: border-color 0.3s cubic-bezier(0.25, 0.01, 0.25, 1) 0s,
+    color 0.3s cubic-bezier(0.25, 0.01, 0.25, 1) 0s,
+    background 0.2s cubic-bezier(0.25, 0.01, 0.25, 1) 0s;
 }
 
 .label {
   display: block;
-  margin-bottom: .3rem;
-  font-size: .9rem;
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
   font-weight: bold;
   color: #05060f99;
-  transition: color .3s cubic-bezier(.25,.01,.25,1) 0s;
+  transition: color 0.3s cubic-bezier(0.25, 0.01, 0.25, 1) 0s;
 }
 
-.input:hover, .input:focus, .input-group:hover .input {
+.input:hover,
+.input:focus,
+.input-group:hover .input {
   outline: none;
-  border-color: #0073E9;
+  border-color: #0073e9;
 }
 
-.input-group:hover .label, .input:focus {
-  color: #0073E9;
+.input-group:hover .label,
+.input:focus {
+  color: #0073e9;
 }
-.text-regular{
+.text-regular {
   font-weight: 500;
   color: #606060;
 }
-.flex{
+.flex {
   display: flex;
 }
-.flex-{
+.flex- {
   display: flex;
   flex-direction: column;
-
 }
-.align-center{
+.align-center {
   text-align: center;
 }
 .main-content {
@@ -140,7 +177,7 @@ html {
   text-align: center;
   display: flex;
   flex-direction: column;
-  row-gap: 3em;
+  row-gap: 1em;
 }
 .progress-bar > div.finished {
   background-color: #0073e9;

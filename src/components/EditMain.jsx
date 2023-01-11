@@ -1,14 +1,25 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import forwardIcon from "../assets/forward.svg"
-import { AppContext } from '../App'
-import selectedIcon from "../assets/selected.svg"
 import editIcon from "../assets/edit.svg"
 import doneIcon from "../assets/selected.svg"
 import { Link } from 'react-router-dom';
-function EditMain({ questions, isSubmitting, isQuesSubmitted, submitQuestions, setQues, selectedIndex, navigateToNextQuestion }) {
+function EditMain({ questions, setCategory, depts, isSubmitting, isQuesSubmitted, submitQuestions, setQues, selectedIndex, navigateToNextQuestion }) {
+    const [categories, setCategories] = useState([])
     const ele = useRef();
     const headRef = useRef()
     const [edit, setEdit] = useState(false);
+    useEffect(() => {
+        const d = ["College"]
+        depts.forEach(dept => {
+            dept['courses'].forEach(cat => {
+                d.push(cat)
+            })
+        })
+        setCategories(d);
+        return () => {
+
+        }
+    }, [depts])
     if (isSubmitting)
         return <h2>Questions Submitting</h2>
     if (isQuesSubmitted)
@@ -19,7 +30,7 @@ function EditMain({ questions, isSubmitting, isQuesSubmitted, submitQuestions, s
     return (
         <React.Fragment>
             <div className='main-content'>
-                <p className="what-ques">QUESTION {selectedIndex + 1} / {questions.length}</p>
+                {/* <p className="what-ques">QUESTION {selectedIndex + 1} / {questions.length}</p> */}
                 <div className='option fromAdmin'>
                     {edit
                         ? <input ref={ele} autoFocus onKeyUp={(e) => {
@@ -34,6 +45,11 @@ function EditMain({ questions, isSubmitting, isQuesSubmitted, submitQuestions, s
                     <img className='selected' onClick={() => {
                         setEdit(!edit)
                     }} src={edit ? doneIcon : editIcon} alt="done" />
+                </div>
+                <div className='categories'>
+                    {categories.map(cat => <span onClick={() => {
+                        setCategory(selectedIndex, cat);
+                    }} key={cat} className={questions[selectedIndex]['category'] === cat ? "selected" : ""}>{cat}</span>)}
                 </div>
                 <div className="options">
                     {questions[selectedIndex]['options'].map(option => {
