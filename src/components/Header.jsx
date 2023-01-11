@@ -1,11 +1,10 @@
-import React, { useContext } from 'react'
-import { AppContext } from '../App'
-function Header() {
-    const { questions, selectedIndex } = useContext(AppContext)
+import React from 'react'
+function Header({ questions, selectedIndex }) {
+
     return (
         <header className='header'>
             <div className="progress-bar">
-                {questions.map((_, i) => <div key={_.id} className={selectedIndex >= i ? "finished" : ''} />)}
+                {questions.map((_, i) => <div key={i} className={selectedIndex >= i ? "finished" : ''} />)}
             </div>
         </header>
     )

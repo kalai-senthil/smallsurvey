@@ -43,6 +43,9 @@ function Admin() {
     return <div className='view admin'>
         <ViewInDiagrams />
         <Departments />
+        <div></div>
+        <Link to="/create"><button className='btn'>Create</button></Link>
+
     </div>
 }
 function ShowDept({ data = [], name }) {
@@ -60,12 +63,17 @@ function ViewInDiagrams() {
     const [loading, setLoading] = useState(true)
     const options = ["Positive", "Neutral", "Negative"];
     const [data, setData] = useState([]);
+    const [percView, setPercView] = useState(null)
     async function getData() {
         const d = [];
+        const dd = {};
         for (let i = 0; i < options.length; i++) {
             const docs = await getDocs(query(collection(db, "feedbacks"), where("answer", "==", options[i])));
             d.push(docs.docs.length);
+            dd[options[i]] = docs.docs.length;
         }
+        const sum = d.reduce((prev, c) => prev + c);
+        setPercView({ ...dd, sum: sum });
         setData(d);
         setLoading(false)
     }
@@ -73,8 +81,7 @@ function ViewInDiagrams() {
         getData();
     }, [])
 
-    return loading ? "Pie Chart Loading..." : <div>
-
+    return loading ? "Pie Chart Loading..." : <div style={{ 'width': "500px" }}>
         <ShowPieChart data={{
             labels: options, datasets: [
 
@@ -91,6 +98,9 @@ function ViewInDiagrams() {
                 },
             ],
         }} />
+        {percView && <div>
+            {options.map(option => <p key={option}>{option}: {(percView[option] / percView['sum']) * 100} %</p>)}
+        </div>}
     </div>
 }
 

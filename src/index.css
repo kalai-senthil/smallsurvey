@@ -25,11 +25,23 @@ html {
 .view {
   padding: 2em;
 }
+.view.admin {
+  display: grid;
+  align-items: flex-start;
+  /* justify-items: flex-end; */
+  grid-template-columns: 1fr 1fr;
+}
+.view.admin button {
+  margin-left: auto;
+}
+.view.admin > * {
+  margin-bottom: 1em;
+}
 
 .deptwise-view {
   color: white;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 1em;
 }
 .dept span {
@@ -157,9 +169,22 @@ html {
   border-radius: 6px;
   color: white;
 }
+.option.fromAdmin {
+  display: flex;
+  align-items: center;
+}
+.option > h2,
+input {
+  flex: 1;
+}
+input {
+  outline: none;
+  padding: 0.8em 0.5em;
+}
 img.selected {
   opacity: 1;
   scale: 1;
+  cursor: pointer;
 }
 .btn > img {
   width: 25px;

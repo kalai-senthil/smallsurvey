@@ -27,7 +27,6 @@ function Main() {
                     }
                     )}
                 </div>
-
             </div>
             {
                 questions.length - 1 === selectedIndex ? <Link to="/view" disabled={questions[selectedIndex]['answer'] === undefined} style={{ "float": "right", "margin": "5em 0" }} className='btn'><img src={forwardIcon} alt="" />View</Link> :
