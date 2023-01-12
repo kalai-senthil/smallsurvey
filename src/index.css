@@ -55,7 +55,6 @@ html {
 }
 
 .deptwise-view {
-  color: white;
   overflow-y: auto;
   overflow-x: hidden;
   max-height: 90vh;
@@ -75,13 +74,7 @@ html {
   cursor: pointer;
   padding: 1em 1.5em;
   border-radius: 8px;
-  /* background-color: #0075e9; */
   color: black;
-  transition: scale 200ms ease-in;
-}
-.dept:hover {
-  scale: 1.02;
-  /* background-color: #1584f4; */
 }
 .view * {
   cursor: default;
@@ -124,6 +117,7 @@ html {
 }
 .dept-diagrams {
   display: flex;
+  flex-wrap: wrap;
 }
 .input {
   height: 44px;
