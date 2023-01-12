@@ -23,34 +23,37 @@ function EditMain({ questions, setCategory, depts, isSubmitting, isQuesSubmitted
     if (isSubmitting)
         return <h2>Questions Submitting</h2>
     if (isQuesSubmitted)
-        return <>
+        return <div>
             <h2>Questions Submitted</h2>
             <Link to="/admin"><button className='btn'>Go to Dashboard</button></Link>
-        </>
+        </div>
     return (
         <React.Fragment>
             <div className='main-content'>
-                {/* <p className="what-ques">QUESTION {selectedIndex + 1} / {questions.length}</p> */}
-                <div className='option fromAdmin'>
+                <p className="what-ques">QUESTION {selectedIndex + 1} / {questions.length}</p>
+                <p className='text-regular'>Select the course to set the question</p>
+                <div className='categories'>
+                    {categories.map(cat => <span onClick={() => {
+                        setCategory(selectedIndex, cat);
+                    }} key={cat} className={questions[selectedIndex]['category'] === cat ? "selected" : ""}>{cat}</span>)}
+                </div> 
+                <div className='fromAdmin'>
                     {edit
-                        ? <input ref={ele} autoFocus onKeyUp={(e) => {
+                        ? <input className='input-' ref={ele} autoFocus onKeyUp={(e) => {
                             if (e.key === "Enter") {
                                 setQues(selectedIndex, ele.current.value);
 
                             }
                         }} onBlur={() => {
                             setQues(selectedIndex, ele.current.value);
-                        }} placeholder='Type Question?...' /> : <h2 ref={headRef} autoFocus className='question'>{questions[selectedIndex]['question']}</h2>
+                        }} placeholder='Type Question?...' /> : 
+                        <h3  ref={headRef} autoFocus className='question'>{questions[selectedIndex]['question']}</h3>
                     }
                     <img className='selected' onClick={() => {
                         setEdit(!edit)
                     }} src={edit ? doneIcon : editIcon} alt="done" />
                 </div>
-                <div className='categories'>
-                    {categories.map(cat => <span onClick={() => {
-                        setCategory(selectedIndex, cat);
-                    }} key={cat} className={questions[selectedIndex]['category'] === cat ? "selected" : ""}>{cat}</span>)}
-                </div>
+                
                 <div className="options">
                     {questions[selectedIndex]['options'].map(option => {
                         let answerSelected = questions[selectedIndex]['answer'] === option;
@@ -64,8 +67,9 @@ function EditMain({ questions, setCategory, depts, isSubmitting, isQuesSubmitted
                 </div>
             </div>
             {
-                questions.length - 1 === selectedIndex ? <button onClick={submitQuestions
-                } disabled={questions[selectedIndex]['questionEdited'] === false} style={{ "float": "right", "margin": "5em 0" }} className='btn'><img src={forwardIcon} alt="" />Submit Questions</button> :
+                questions.length - 1 === selectedIndex ? 
+                <button onClick={submitQuestions} disabled={questions[selectedIndex]['questionEdited'] === false} 
+                style={{ "float": "right", "margin": "5em 0" }} className='btn--    '><img src={forwardIcon} alt="" />Submit Questions</button> :
                     <button disabled={questions[selectedIndex]['questionEdited'] === false} onClick={() => {
                         headRef.current.classList.add("changed");
                         setTimeout(() => {
@@ -73,7 +77,7 @@ function EditMain({ questions, setCategory, depts, isSubmitting, isQuesSubmitted
                             navigateToNextQuestion();
                         }, 300);
 
-                    }} style={{ "float": "right", "margin": "5em 0" }} className='btn'><img src={forwardIcon} alt="" /> Next</button>
+                    }} style={{ "float": "right", "margin": "5em 0" }} className='btn--'><img src={forwardIcon} alt="" /> Next</button>
             }
         </React.Fragment>
     )

@@ -56,27 +56,39 @@ function Create() {
         setCreatedQues([...d])
     }
     return (
-        <div className='view'>
-            {createdQuesLength === null ? <div><h2>Create</h2><input ref={inop} type="number" min="1" /><button className='btn' onClick={() => {
-                const d = []
-                if (inop.current.valueAsNumber >= 10) {
-                    setCreatedQuesLength(inop.current.valueAsNumber)
-                    for (let i = 0; i < inop.current.valueAsNumber; i++) {
-                        d.push({ 'question': `Question ${i + 1}`, "options": ['Positive', "Neutral", "Negative"], "questionEdited": false, "category": "College" })
+        <div >
+            
+            {createdQuesLength === null ?
+            <div className='view-  main-content'>
+                <div>
+                    <h2>QUESTIONARIES</h2>
+                    <p className='text-regular'>Enter the number of questions have to be created</p> 
+                </div>
+                <div className='login-form-content'>
+                    <input placeholder='Example:10' className='input' ref={inop} type="number" min="1" />
+                    <button className='btn' onClick={() => {
+                    const d = []
+                    if (inop.current.valueAsNumber >= 10) {
+                        setCreatedQuesLength(inop.current.valueAsNumber)
+                        for (let i = 0; i < inop.current.valueAsNumber; i++) {
+                            d.push({ 'question': `Question ${i + 1}`, "options": ['Positive', "Neutral", "Negative"], "questionEdited": false, "category": "College" })
+                        }
+                        setCreatedQues(d)
+                        return
                     }
-                    setCreatedQues(d)
-                    return
-                }
-                alert("Greator than 9")
-            }}>Create createdQues</button></div> :
-                <>
+                    alert("Greater than 9")
+                    }}>Create</button>
+                </div>
+            </div>
+              :
+                <div className='app'>
                     <Header questions={createdQues} selectedIndex={selectedIndex} />
-                    <button disabled={selectedIndex === 0} onClick={navigateToPrevQuestion} className='btn'>
-                        <img src={backIcon} alt="back" />
+                    <button disabled={selectedIndex === 0} onClick={navigateToPrevQuestion} className='btn-'>
+                        <img src={backIcon} style={{"height":"20px "}}  alt="back" />
                         Previous
                     </button>
                     <EditMain setCategory={setCategory} isQuesSubmitted={isQuesSubmitted} depts={depts} isSubmitting={isSubmitting} submitQuestions={submitQuestions} setQues={setQues} questions={createdQues} selectedIndex={selectedIndex} navigateToNextQuestion={navigateToNextQuestion} />
-                </>
+                </div>
             }
         </div>
     )
