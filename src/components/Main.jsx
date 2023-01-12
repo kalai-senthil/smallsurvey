@@ -17,13 +17,10 @@ function Main() {
                         let answerSelected = questions[selectedIndex]['answer'] === option;
                         return <div key={option} onClick={() => {
                             answer(selectedIndex, option, ele.current);
-
-                        }} className={`option ${answerSelected && "selected"}`}>
-                            
+                        }} className={`option ${answerSelected && "selected"}`}>       
                             <span>
                                 {option}
                             </span>
-
                         </div>
                     }
                     )}
@@ -38,7 +35,7 @@ function Main() {
                             navigateToNextQuestion();
                         }, 300);
 
-                    }} style={{ "float": "right", "margin": "5em 0" , "height":"15px" }} className='btn'><img src={forwardIcon} alt="" /> Next</button>
+                    }} style={{ "float": "right", "margin": "5em 0" , "height":"15px" }} className='btn--'><img src={forwardIcon} alt="" /> Next</button>
             }
         </React.Fragment>
     )

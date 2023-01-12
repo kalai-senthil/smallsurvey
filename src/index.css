@@ -16,6 +16,8 @@ html {
 .options {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+
 }
 .option:hover {
   box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.04);
@@ -79,22 +81,14 @@ html {
 .view * {
   cursor: default;
 }
-.option {
-  transition: all 200ms ease-in;
-  cursor: pointer;
-  margin: 1em 0;
-  display: flex;
-  align-items: center;
-  text-align: left;
-  background-color: white;
-  border-radius: 10px;
-  padding: 1em 1.5em;
-}
 .app {
   padding: 1em 2em;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .login-form{
-  
   max-width: 600px;
   margin: 0;
   position: absolute;
@@ -116,6 +110,29 @@ html {
   background-color: #0073e9;
   color: white;
 }
+.option.selected {
+  outline: 1.8px solid transparent;
+  animation: transist 200ms ease-in forwards;
+  border-left:  0.3rem solid #0073e9;
+  box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.04);
+}
+@keyframes transist{
+  to{
+    outline: 2.1px solid #0073e9;
+  }
+}
+.option {
+  cursor: pointer;
+  margin: 1em 0;
+  display: flex;
+  
+  max-width: 70%;
+  align-items: center;
+  text-align: left;
+  background-color: white;
+  border-radius: 10px;
+  padding: 1.3em 1.2em;
+}
 .dept-diagrams {
   display: flex;
   flex-wrap: wrap;
@@ -125,7 +142,7 @@ html {
   font-weight: 500;
   min-height: 44px;
   background-color: #171fac0a;
-  border-radius: .3rem;
+  border-radius:.3rem;
   padding: 0 1rem;
   border: 2px solid transparent;
   font-size: medium;
@@ -161,6 +178,9 @@ html {
   display: flex;
   column-gap:2rem;
 }
+.fix{
+  min-width: 331px;
+}
 .flex- {
   display: flex;
   flex-direction: column;
@@ -169,18 +189,22 @@ html {
   text-align: center;
 }
 .main-content {
+  display: flex;
+
   max-width: 600px;
   margin: 0 auto;
   text-align: center;
   display: flex;
   flex-direction: column;
   row-gap: 1em;
+  word-wrap: break-word;
 }
 .progress-bar > div.finished {
   background-color: #0073e9;
 }
 .what-ques {
   color: #0073e9;
+
 }
 .progress-bar {
   display: flex;
@@ -225,11 +249,7 @@ html {
     bottom: 20px;
   }
 }
-.option.selected {
-  outline: 1.8px solid #0073e9;
-  border-left:  0.3rem solid #0073e9;
-  box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.04);
-}
+
 .main-content {
   animation: slide 300ms ease forwards;
   position: relative;
@@ -273,6 +293,25 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  align-self: flex-start;
+  border: none;
+  gap: 0 0.2em;
+  padding: 0.5em 1em;
+  min-height: 44px;
+  cursor: pointer;
+  border-radius: 0.3rem;
+  color: white;
+  font-weight: 700;
+  font-size: large;
+  font-family: 'Baloo Chettan 2', cursive;
+}
+.btn-- {
+  transition: all 300ms ease-out;
+  background-color: #0073e9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: flex-end;
   border: none;
   gap: 0 0.2em;
   padding: 0.5em 1em;
