@@ -38,7 +38,6 @@ function App() {
     }
     setDepts(_depst);
     getQuestions();
-
   }
   function getDetails(choice, val) {
     setClient({ ...client, [choice]: val })
@@ -123,7 +122,7 @@ function Home() {
         <div className='flex-'>
           <label className='label'>Register No</label>
           <input
-          className='input'
+            className='input'
             onChange={(v) => {
               getDetails('regno', v.target.value.toUpperCase());
             }}

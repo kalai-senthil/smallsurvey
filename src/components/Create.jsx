@@ -10,7 +10,7 @@ import { AppContext } from '../App';
 function Create() {
     const [createdQues, setCreatedQues] = useState([]);
     const inop = useRef()
-    const { questions } = useContext(AppContext)
+    const { questions, depts } = useContext(AppContext)
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isQuesSubmitted, setIsQuesSubmitted] = useState(false)
     const [selectedIndex, setSelectedIndex] = useState(0)
@@ -44,6 +44,11 @@ function Create() {
         setIsSubmitting(true);
         deleteQuestions();
     }
+    function setCategory(index, cate) {
+        const d = createdQues;
+        d[index]['category'] = cate;
+        setCreatedQues([...d]);
+    }
     function setQues(index, ques) {
         let d = createdQues;
         d[index]['question'] = ques;
@@ -57,7 +62,7 @@ function Create() {
                 if (inop.current.valueAsNumber >= 10) {
                     setCreatedQuesLength(inop.current.valueAsNumber)
                     for (let i = 0; i < inop.current.valueAsNumber; i++) {
-                        d.push({ 'question': `Question ${i + 1}`, "options": ['Positive', "Neutral", "Negative"], "questionEdited": false })
+                        d.push({ 'question': `Question ${i + 1}`, "options": ['Positive', "Neutral", "Negative"], "questionEdited": false, "category": "College" })
                     }
                     setCreatedQues(d)
                     return
@@ -70,7 +75,7 @@ function Create() {
                         <img src={backIcon} alt="back" />
                         Previous
                     </button>
-                    <EditMain isQuesSubmitted={isQuesSubmitted} isSubmitting={isSubmitting} submitQuestions={submitQuestions} setQues={setQues} questions={createdQues} selectedIndex={selectedIndex} navigateToNextQuestion={navigateToNextQuestion} />
+                    <EditMain setCategory={setCategory} isQuesSubmitted={isQuesSubmitted} depts={depts} isSubmitting={isSubmitting} submitQuestions={submitQuestions} setQues={setQues} questions={createdQues} selectedIndex={selectedIndex} navigateToNextQuestion={navigateToNextQuestion} />
                 </>
             }
         </div>

@@ -33,7 +33,7 @@ function Departments() {
 
     return loading ? <div>Loading..</div> : (
         <div className="deptwise-view">
-            {depts.map(dept => <ShowDept name={dept.name} data={feedBacksUsersByDepts[dept.abbr]} key={dept.id} />)}
+            {depts.map(dept => <ShowDept name={dept.name} courses={dept.courses} data={feedBacksUsersByDepts[dept.abbr]} key={dept.id} />)}
         </div>
     )
 }
@@ -41,25 +41,28 @@ function Departments() {
 export default Admin
 function Admin() {
     return <div className='view admin'>
-        <ViewInDiagrams />
+        <ViewInDiagrams category={"college"} />
         <Departments />
-        <div></div>
         <Link to="/create"><button className='btn'>Create</button></Link>
 
     </div>
 }
-function ShowDept({ data = [], name }) {
+function ShowDept({ data = [], name, courses }) {
     return <Link className="dept">
-        <p>{name}</p>
+        <p>{name} <span>({data.length})</span></p>
+        <div className="dept-diagrams">
+            {courses.map(course => <div key={course}>
+                <ViewInDiagrams showLabel={false} width='200px' category={course} />
+                <p>{course}</p>
+            </div>
+            )}
+        </div>
         <p>
-            <span>
-                {data.length}
-            </span> feedbacks
         </p>
     </Link>
 }
 
-function ViewInDiagrams() {
+function ViewInDiagrams({ category, width = "500px", showLabel = true }) {
     const [loading, setLoading] = useState(true)
     const options = ["Positive", "Neutral", "Negative"];
     const [data, setData] = useState([]);
@@ -68,12 +71,12 @@ function ViewInDiagrams() {
         const d = [];
         const dd = {};
         for (let i = 0; i < options.length; i++) {
-            const docs = await getDocs(query(collection(db, "feedbacks"), where("answer", "==", options[i])));
+            const docs = await getDocs(query(collection(db, "feedbacks"), where("category", "==", category), where("answer", "==", options[i])));
             d.push(docs.docs.length);
             dd[options[i]] = docs.docs.length;
         }
         const sum = d.reduce((prev, c) => prev + c);
-        setPercView({ ...dd, sum: sum });
+        setPercView({ ...dd, sum: sum === 0 ? 1 : sum });
         setData(d);
         setLoading(false)
     }
@@ -81,10 +84,9 @@ function ViewInDiagrams() {
         getData();
     }, [])
 
-    return loading ? "Pie Chart Loading..." : <div style={{ 'width': "500px" }}>
+    return loading ? <h2>Pie Chart Loading...</h2> : <div style={{ 'width': width }}>
         <ShowPieChart data={{
             labels: options, datasets: [
-
                 {
                     normalized: true,
                     label: '# of Feedbacks',
@@ -98,13 +100,13 @@ function ViewInDiagrams() {
                 },
             ],
         }} />
-        {percView && <div>
-            {options.map(option => <p key={option}>{option}: {(percView[option] / percView['sum']) * 100} %</p>)}
+        {percView && showLabel && <div style={{ 'textAlign': "center", "marginTop": ".5em" }}>
+            {options.map(option => <span key={option}>{option}: {(Math.ceil(percView[option] / percView['sum'] * 100))}%  </span>)}
         </div>}
     </div>
 }
 
 
 function ShowPieChart({ data }) {
-    return <Pie className='chart' data={data} />
+    return <Pie options={{ maintainAspectRatio: true }} className='chart' data={data} />
 }
