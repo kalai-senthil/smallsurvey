@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom"
 import './App.css'
-import backIcon from "./assets/back.svg"
+import backIcon from "./assets/back.svg"  
 import Header from './components/Header';
 import { createContext, } from 'react';
 import Main from './components/Main';
@@ -109,8 +109,8 @@ function Home() {
 
   return !gotDetails ?
     <div className='login-form'>
-      <div className='align-center'>
-          <h1>FEEDBACK FORM</h1>
+      <div className='align-center'>  
+          <h1>FEEDBACK</h1>
           <p className='text-regular'>Enter the details to jump into the survey</p>
         </div >
       <div className='login-form-content'>
@@ -133,6 +133,7 @@ function Home() {
           <div>
           <label className='label'>Department</label>
           <select
+          className='input'
             onChange={(v) => {
               getDetails('department', v.target.value);
             }}
@@ -141,9 +142,10 @@ function Home() {
             {depts.map(dept => <option key={dept.id} value={dept.abbr}>{dept.name}</option>)}
           </select>
           </div>
-          <div>
+          <div >
           <label className='label'>Year</label>
           <select
+          className='input p-2'
             onChange={(v) => {
               getDetails('year', v.target.value);
             }}
@@ -156,7 +158,7 @@ function Home() {
           </select>
           </div>
         </div>
-        <button onClick={navigateToNextQuestion} className='btn'>Next</button>
+        <button onClick={navigateToNextQuestion} className='btn'>NEXT</button>
       </div>
     </div>
     :
@@ -164,8 +166,8 @@ function Home() {
       loading ? "Loading..." :
         <div className='app'>
           <Header questions={questions} selectedIndex={selectedIndex} />
-          <button disabled={selectedIndex === 0} onClick={navigateToPrevQuestion} className='btn'>
-            <img src={backIcon} alt="back" />
+          <button disabled={selectedIndex === 0} onClick={navigateToPrevQuestion} className='btn-'>
+            <img src={backIcon} style={{"height":"20px "}} alt="back" />
             Previous
           </button>
           <Main />

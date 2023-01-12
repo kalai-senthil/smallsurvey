@@ -18,7 +18,7 @@ function Main() {
                             answer(selectedIndex, option, ele.current);
 
                         }} className={`option ${answerSelected && "selected"}`}>
-                            <img className={`${answerSelected && "selected"}`} src={selectedIcon} alt="" />
+                            
                             <span>
                                 {option}
                             </span>
@@ -37,7 +37,7 @@ function Main() {
                             navigateToNextQuestion();
                         }, 300);
 
-                    }} style={{ "float": "right", "margin": "5em 0" }} className='btn'><img src={forwardIcon} alt="" /> Next</button>
+                    }} style={{ "float": "right", "margin": "5em 0" , "height":"15px" }} className='btn'><img src={forwardIcon} alt="" /> Next</button>
             }
         </React.Fragment>
     )
