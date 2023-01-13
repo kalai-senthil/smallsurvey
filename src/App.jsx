@@ -100,9 +100,6 @@ function App() {
   )
 }
 
-
-
-
 function Home() {
   const { loading, getDetails, gotDetails, navigateToPrevQuestion, navigateToNextQuestion, depts, selectedIndex, questions } = useContext(AppContext);
 
@@ -129,7 +126,7 @@ function Home() {
             type="text" required />
         </div>
         <div className='flex'>
-          <div>
+          <div className='fix'>
           <label className='label'>Department</label>
           <select
           className='input'
@@ -141,7 +138,7 @@ function Home() {
             {depts.map(dept => <option key={dept.id} value={dept.abbr}>{dept.name}</option>)}
           </select>
           </div>
-          <div >
+          <div className=''>
           <label className='label'>Year</label>
           <select
           className='input p-2'
