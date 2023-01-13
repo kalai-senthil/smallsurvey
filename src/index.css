@@ -93,8 +93,7 @@ html {
 .app {
   padding: 1em 2em;
 }
-.login-form{
-  
+.login-form {
   max-width: 600px;
   margin: 0;
   position: absolute;
@@ -125,12 +124,14 @@ html {
   font-weight: 500;
   min-height: 44px;
   background-color: #171fac0a;
-  border-radius: .3rem;
+  border-radius: 0.3rem;
   padding: 0 1rem;
   border: 2px solid transparent;
   font-size: medium;
   font-weight: 500;
-  transition: border-color .3s cubic-bezier(.25,.01,.25,1) 0s, color .3s cubic-bezier(.25,.01,.25,1) 0s,background .2s cubic-bezier(.25,.01,.25,1) 0s;
+  transition: border-color 0.3s cubic-bezier(0.25, 0.01, 0.25, 1) 0s,
+    color 0.3s cubic-bezier(0.25, 0.01, 0.25, 1) 0s,
+    background 0.2s cubic-bezier(0.25, 0.01, 0.25, 1) 0s;
 }
 
 .label {
@@ -157,9 +158,12 @@ html {
   font-weight: 500;
   color: #606060;
 }
+.flex > div {
+  flex: 1;
+}
 .flex {
   display: flex;
-  column-gap:2rem;
+  column-gap: 2rem;
 }
 .flex- {
   display: flex;
@@ -227,7 +231,7 @@ html {
 }
 .option.selected {
   outline: 1.8px solid #0073e9;
-  border-left:  0.3rem solid #0073e9;
+  border-left: 0.3rem solid #0073e9;
   box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.04);
 }
 .main-content {
@@ -265,7 +269,7 @@ html {
   font-weight: 700;
   font-size: large;
   letter-spacing: 0.1rem;
-  font-family: 'Baloo Chettan 2', cursive;
+  font-family: "Baloo Chettan 2", cursive;
 }
 .btn- {
   transition: all 300ms ease-out;
@@ -282,7 +286,7 @@ html {
   color: white;
   font-weight: 700;
   font-size: large;
-  font-family: 'Baloo Chettan 2', cursive;
+  font-family: "Baloo Chettan 2", cursive;
 }
 .option.fromAdmin {
   display: flex;
