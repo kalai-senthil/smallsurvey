@@ -1,7 +1,8 @@
 import React, { useContext, useRef, useState } from 'react'
 import Header from './Header';
 import EditMain from './EditMain';
-import backIcon from "../assets/back.svg"
+import backIcon from "../assets/back.svg";
+import quest from "../assets/question doodle.svg";
 import { addDoc, deleteDoc, doc } from 'firebase/firestore';
 import { collection } from 'firebase/firestore';
 import db from '../firebase';
@@ -57,18 +58,20 @@ function Create() {
     }
     return (
         <div >
-            
             {createdQuesLength === null ?
-            <div className='view-  main-content'>
+            <div className='view-  main-content- flex-content'>
+                <img className='dood1' src={quest} alt="" />
+                <img className='dood2' src={quest} alt="" />
+                <img className='dood3' src={quest} alt="" />
                 <div>
                     <h2>QUESTIONARIES</h2>
                     <p className='text-regular'>Enter the number of questions have to be created</p> 
                 </div>
                 <div className='login-form-content'>
-                    <input placeholder='Example:10' className='input' ref={inop} type="number" min="1" />
+                    <input placeholder='Example:10' className='input-' ref={inop} type="number" min="1" />
                     <button className='btn' onClick={() => {
                     const d = []
-                    if (inop.current.valueAsNumber >= 10) {
+                    if (inop.current.valueAsNumber >= 1) {
                         setCreatedQuesLength(inop.current.valueAsNumber)
                         for (let i = 0; i < inop.current.valueAsNumber; i++) {
                             d.push({ 'question': `Question ${i + 1}`, "options": ['Positive', "Neutral", "Negative"], "questionEdited": false, "category": "College" })

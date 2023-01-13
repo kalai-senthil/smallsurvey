@@ -8,10 +8,10 @@ function Main() {
     const { questions, selectedIndex, answer, navigateToNextQuestion } = useContext(AppContext);
     return (
         <React.Fragment>
-            <div className='main-content'>
+            <div  className='main-content-'>
                 <p className="what-ques">QUESTION {selectedIndex + 1} / {questions.length}</p>
                 <h4 className='what-ques'>{questions[selectedIndex]['category']}</h4>   
-                <h2 className='question' ref={ele}>{questions[selectedIndex]['question']}</h2>
+                <h2 className='question-' ref={ele}>{questions[selectedIndex]['question']}</h2>
                 <div className="options">
                     {questions[selectedIndex]['options'].map(option => {
                         let answerSelected = questions[selectedIndex]['answer'] === option;

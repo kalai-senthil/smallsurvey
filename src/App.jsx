@@ -3,6 +3,8 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom"
 import './App.css'
 import backIcon from "./assets/back.svg"  
 import Header from './components/Header';
+import doodle from './assets/doodle.svg';
+import quest from './assets/question doodle.svg';
 import { createContext, } from 'react';
 import Main from './components/Main';
 import { addDoc, collection, doc, getDoc, getDocs, orderBy, query, setDoc } from "firebase/firestore"
@@ -105,6 +107,7 @@ function Home() {
 
   return !gotDetails ?
     <div className='login-form'>
+      <img className=" pos" src={doodle} alt="" />
       <div className='align-center'>  
           <h1>FEEDBACK</h1>
           <p className='text-regular'>Enter the details to jump into the survey</p>
@@ -161,6 +164,9 @@ function Home() {
     (
       loading ? "Loading..." :
         <div className='app'>
+          <img className='dood1' src={quest} alt="" />
+          <img className='dood2' src={quest} alt="" />
+          <img className='dood3' src={quest} alt="" />
           <Header questions={questions} selectedIndex={selectedIndex} />
           <button disabled={selectedIndex === 0} onClick={navigateToPrevQuestion} className='btn-'>
             <img src={backIcon} style={{"height":"20px "}} alt="back" />

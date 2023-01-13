@@ -41,7 +41,6 @@ html {
   padding: 1.7em;
   overflow: auto;
   padding-top: 4rem;
-  height: 100vh;
   justify-content: center;
   align-items: center;
 }
@@ -49,7 +48,6 @@ html {
   display: flex;
   padding: 1.7em;
   overflow: auto;
-
   height: 100vh;
   justify-content: center;
   align-items: center;
@@ -77,7 +75,7 @@ html {
 
 .categories {
   display: flex;
-  overflow: auto;
+ 
   padding: 7px 0px;
 }
 
@@ -214,6 +212,7 @@ html {
 }
 
 .input- {
+  text-align: center;
   min-height: 60px;
   background-color: #8eb6ff3a;
   border-radius:.3rem;
@@ -267,21 +266,38 @@ html {
   text-align: center;
 }
 .main-content {
+  background-color: #00367330;
   display: flex;
   max-width: 600px;
   margin: 0 auto;
   text-align: center;
   display: flex;
   flex-direction: column;
-  row-gap: 1em;
   word-wrap: break-word;
+  border: 1px solid #0073e9;
+  margin: 0.4rem;
+  padding : 1.5rem 0.7rem;
+  border-radius: 0.6rem;
 }
+
+
+.main-content- {
+  display: flex;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  word-wrap: break-word;
+ 
+}
+
 .progress-bar > div.finished {
   background-color: #0073e9;
 }
 .what-ques {
   color: #0073e9;
-
+  
 }
 .progress-bar {
   display: flex;
@@ -294,7 +310,31 @@ html {
   border-radius: 10px;
   height: 5px;
 }
+
+.question- {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: larger;
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center ;
+  min-height: 60px;
+  opacity: 0;
+  animation: quesSlide 300ms ease forwards 100ms;
+  position: relative;
+}
+
 .question {
+  width: 50vw;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: larger;
+  display: flex;
+  border: 0.13rem solid #0073e9;
+  border-radius: 0.6rem;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center ;
+  min-height: 60px;
   opacity: 0;
   animation: quesSlide 300ms ease forwards 100ms;
   position: relative;
@@ -418,7 +458,7 @@ html {
 .option > h3,
 input {
   flex: 4;
-  text-align: center;
+  
 }
 input {
   outline: none;
@@ -458,6 +498,56 @@ img.selected {
 }
 
 .h3{
+  font-family: 'Source Sans Pro', sans-serif;
   font-size: medium;
   font-weight: 500;
+}
+
+.support{
+  width: 60vw;
+}
+
+.pos{
+  position: absolute;
+  z-index: -1;
+  height: 85vh;
+  width: 100vw;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  opacity: 40%;
+}
+
+.dood1{
+  position: absolute;
+  z-index: -1;
+  height: 28vh; 
+  left: 16%;
+  top: 13%;
+  transform: translate(-50%,-50%);
+  transform: rotate(-50deg);
+  opacity: 70%;
+}
+
+.dood2{
+  position: absolute;
+  z-index: -1;
+  height: 30vh;
+  left: 70%;
+  top: 25%;
+  transform: translate(-50%,-50%);
+  transform: rotate(40deg);
+  opacity: 70%;
+}
+
+.dood3{
+  position: absolute;
+  z-index: -1;
+  height: 27vh;
+  width: 30vw;
+  left: 17%;
+  top: 62%;
+  transform: translate(-50%,-50%);
+  transform: rotate(200deg);
+  opacity: 70%;
 }

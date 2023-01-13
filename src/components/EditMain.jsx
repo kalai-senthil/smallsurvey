@@ -29,17 +29,17 @@ function EditMain({ questions, setCategory, depts, isSubmitting, isQuesSubmitted
         </div>
     return (
         <React.Fragment>
-            <div className='main-content'>
+            <div className='main-content-'>
                 <p className="what-ques">QUESTION {selectedIndex + 1} / {questions.length}</p>
                 <p className='text-regular'>Select the course to set the question</p>
-                <div className='categories'>
-                    {categories.map(cat => <span onClick={() => {
+                <select className='input'>
+                    {categories.map(cat => <option onClick={() => {
                         setCategory(selectedIndex, cat);
-                    }} key={cat} className={questions[selectedIndex]['category'] === cat ? "selected" : ""}>{cat}</span>)}
-                </div> 
+                    }} key={cat} className={questions[selectedIndex]['category'] === cat ? "selected" : ""}>{cat}</option>)}
+                </select> 
                 <div className='fromAdmin'>
                     {edit
-                        ? <input className='input-' ref={ele} autoFocus onKeyUp={(e) => {
+                        ? <input className='input- support' ref={ele} autoFocus onKeyUp={(e) => {
                             if (e.key === "Enter") {
                                 setQues(selectedIndex, ele.current.value);
 

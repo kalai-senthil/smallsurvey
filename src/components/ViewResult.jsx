@@ -8,7 +8,7 @@ function ViewResult() {
     const Navigation = useNavigate()
     const { questions, submitFeedback, isSubmitting, isFormSubmitted } = useContext(AppContext);
     return (
-        <div className='view'>
+        <div className={(isFormSubmitted||isSubmitting)?"view-":"view"}>
             <div className='fixed header '>
             <img src={forward} onClick={()=>Navigation(-1)} style={{"transform":"rotate(180deg)","cursor":"pointer"}} alt="" />
             <h3>YOUR FEEDBACKS</h3>
@@ -42,7 +42,7 @@ export default ViewResult
 function ShowQuestion({ question, options, index, answer }) {
     return <div className='main-content'>
         <p className="what-ques">QUESTION {index}</p>
-        <h3 className='question'>{question}</h3>
+        <h3 className='question-'>{question}</h3>
         <div className="options">
             {options.map(_option => {
                 let answerSelected = _option === answer;
